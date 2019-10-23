@@ -19,6 +19,16 @@ app.prepare().then(() => {
   server.use(bodyParser.urlencoded({ extended: false }));
   server.use(cookieParser());
 
+  server.get("/", (req, res) => {
+    return app.render(req, res, "/home", req.query)
+
+  })
+
+  server.get("/profile/:name", (req, res) => {
+    return app.render(req, res, "/profile", req.query)
+
+  })
+
   server.get("*", (req, res) => {
     return handle(req, res);
   });
